@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import api from '../../services/api'
-import { login } from "../../services/auth";
-import '../../assets/css/Login.css'
+import React, { useState } from 'react';
+import { reset_password } from 'services/endpoint'
+import 'assets/css/Login.css'
 import {
-    Container,
     CardHeader,
     CardBody,
     FormGroup,
@@ -17,18 +15,22 @@ import { Link, Dcard, BtLogin, Label, TitleCard, InpText } from './styles'
 const Recover = (props) => {
     const { Recover } = useSelector(r => r)
     const dispatch = useDispatch();
-    const [ state, setState ] = useState({ email: '', senha: '', error: '' }) 
+    const [ state, setState ] = useState({ email: '', senha: '', error: '',  }) 
 
     async function handleRecover (e) {
         e.preventDefault();
-        const { email, senha } = state;
-        if (!email || !senha) {
+        const { email } = state;
+        if (!email) {
           setState({...state, error: "Preencha e-mail e senha para continuar!" });
           return false
         } else {
           try {
-              const response = await api.post("/autentificar", { email, senha });
-              
+              await reset_password({ email}).then(async r => {
+                if(r.status === 200 ){
+                  window.alert(r.data.message)
+                  window.location.assign('/')
+                }
+              });
             } catch (err) {
               setState({...state,
               error:
@@ -73,8 +75,7 @@ const Recover = (props) => {
                 </Row>
               </Form>
             </CardBody>
-          </Dcard>            
-
+          </Dcard>         
   );
 }
 

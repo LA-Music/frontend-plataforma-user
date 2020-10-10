@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch} from 'react-redux';
-import api from '../../services/api'
-import { login } from "../../services/auth";
-import '../../assets/css/Login.css'
+import React, { useState } from 'react'
+import { useSelector, useDispatch} from 'react-redux'
+import { Login as apiLogin } from 'services/endpoint'
+import { login } from 'services/auth'
+import 'assets/css/Login.css'
 import {
     CardHeader,
     CardBody,
@@ -28,13 +28,10 @@ const Login = (props) => {
           return false
         } else {
           try {
-              const response = await api.post("/autentificar", { email, senha });
+              const response = await apiLogin({ email, senha });
               login(response.data.token, response.data.nome);
-              if (response.data.papel === 'admin') {
-                props.history.push("/admin/dashboard");
-              }else {
-                console.log(props)
-                props.history.push("/user/credito-retido");
+              if (response.data.papel === 'user'){
+                props.history.push("/user/gestao-repositorio");
               }
             } catch (err) {
               setState({...state,

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import api from '../../services/api'
-import '../../assets/css/Login.css'
+import React, { useState } from 'react' 
+import { register as apiRegister } from 'services/endpoint'
+import 'assets/css/Login.css'
 import {
     CardHeader,
     CardBody,
@@ -33,7 +33,7 @@ const Register = (props) => {
           return false
         } else {
           try {
-              await api.post("/registrar", { ...state })
+              await apiRegister({ ...state })
               .then(r => r.statusText.toLowerCase() === 'ok' &&  dispatch({type: 'TYPE_FORM', payload: 'Login'}))
               .catch(function(err){
                 if(err.response.status === 500){

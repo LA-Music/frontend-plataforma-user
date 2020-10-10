@@ -5,7 +5,7 @@ import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 import { isAuthenticated } from "../services/auth";
 
-import {routesUser} from "routes.js";
+import routes from "routes";
 
 var ps;
 
@@ -36,12 +36,12 @@ class DashboardUser extends React.Component {
       document.scrollingElement.scrollTop = 0;
     }
   }
-  handleActiveClick = color => {
-    this.setState({ activeColor: color });
-  };
-  handleBgClick = color => {
-    this.setState({ backgroundColor: color });
-  };
+  // handleActiveClick = color => {
+  //   this.setState({ activeColor: color });
+  // };
+  // handleBgClick = color => {
+  //   this.setState({ backgroundColor: color });
+  // };
 
   PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -62,14 +62,14 @@ class DashboardUser extends React.Component {
         <Sidebar
           {...this.props}
 
-          routes={routesUser}
+          routes={routes}
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
         />
         <div className="main-panel" ref={this.mainPanel}>
           <DemoNavbar {...this.props} />
           <Switch>
-            {routesUser.map((prop, key) => {
+            {routes.map((prop, key) => {
               return (
                 <this.PrivateRoute
                   path={prop.layout + prop.path}

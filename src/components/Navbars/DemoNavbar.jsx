@@ -18,7 +18,7 @@ import {
   Input
 } from "reactstrap";
 import { useDispatch, useSelector} from 'react-redux';
-import routes, { routesUser } from "routes.js";
+import routes from "routes.js";
 import IconKanban from 'assets/img/icon-kanban.svg'
 import IconKanbanSelected from 'assets/img/icon-kanban-selected.svg'
 import IconList from 'assets/img/icon-list.svg'
@@ -55,15 +55,6 @@ function Header (props) {
       }
       return null;
     });
-    
-    if (brandName === null) {
-      routesUser.map((prop, key) => {
-        if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
-          brandName = prop.name;
-        }
-        return null;
-      });
-    }
 
     return brandName;
   }
