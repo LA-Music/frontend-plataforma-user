@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import { Login as apiLogin } from 'services/endpoint'
 import { login } from 'services/auth'
+import { PreLoad } from 'components/PreLoad'
 import 'assets/css/Login.css'
 import {
     CardHeader,
@@ -16,6 +17,7 @@ import {
 
 const Login = (props) => {
     const { Login } = useSelector(s => s)
+    const [ load, setLoad ] = useState(false)
 
     const dispatch = useDispatch()
     const [ state, setState ] = useState({ email: '', senha: '', error: '' }) 
@@ -28,10 +30,18 @@ const Login = (props) => {
           return false
         } else {
           try {
+              setLoad(true)
               const response = await apiLogin({ email, senha });
               login(response.data.token, response.data.nome);
               if (response.data.papel === 'user'){
                 props.history.push("/user/gestao-repositorio");
+                setLoad(false)
+              }else {
+                setState({...state,
+                  error:
+                      "Você não possui permissão."
+                  });
+                setLoad(false)
               }
             } catch (err) {
               setState({...state,
@@ -42,6 +52,9 @@ const Login = (props) => {
         }
     }
   return (
+    load ? 
+      <PreLoad />
+     : (
           <Dcard className="card-user">
             <CardHeader className="px-0 px-md-3">
               <TitleCard tag="h5">Acessar minha conta</TitleCard>
@@ -80,6 +93,7 @@ const Login = (props) => {
               </Form>
             </CardBody>
           </Dcard>
+        )
   );
 }
 
