@@ -34,7 +34,7 @@ const Login = (props) => {
               const response = await apiLogin({ email, senha });
               login(response.data.token, response.data.nome);
               if (response.data.papel === 'user'){
-                props.history.push("/user/gestao-repositorio");
+                props.history.push("/gestao-repositorio");
                 setLoad(false)
               }else {
                 setState({...state,

@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "./static/css/main.38d13845.chunk.css",
+    "main.js": "./static/js/main.5123bce0.chunk.js",
+    "main.js.map": "./static/js/main.5123bce0.chunk.js.map",
+    "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
+    "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
+    "static/css/2.8db5677f.chunk.css": "./static/css/2.8db5677f.chunk.css",
+    "static/js/2.3cb9cbbc.chunk.js": "./static/js/2.3cb9cbbc.chunk.js",
+    "static/js/2.3cb9cbbc.chunk.js.map": "./static/js/2.3cb9cbbc.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.a413ab3fae82d8128677f49a0599d985.js": "./precache-manifest.a413ab3fae82d8128677f49a0599d985.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.8db5677f.chunk.css.map": "./static/css/2.8db5677f.chunk.css.map",
+    "static/css/main.38d13845.chunk.css.map": "./static/css/main.38d13845.chunk.css.map",
+    "static/media/Login.css": "./static/media/AvenirNextLTPro-Regular.b5ed9330.otf",
+    "static/media/concert.png": "./static/media/concert.07bf992c.png",
+    "static/media/icon-kanban-selected.svg": "./static/media/icon-kanban-selected.c18302f2.svg",
+    "static/media/icon-kanban.svg": "./static/media/icon-kanban.7967f733.svg",
+    "static/media/icon-list-selected.svg": "./static/media/icon-list-selected.5ca457eb.svg",
+    "static/media/icon-list.svg": "./static/media/icon-list.60c7ac97.svg",
+    "static/media/logo-lamusic.svg": "./static/media/logo-lamusic.6054173f.svg",
+    "static/media/logo.png": "./static/media/logo.f92836b1.png",
+    "static/media/paper-dashboard.scss?v=1.1.0": "./static/media/nucleo-icons.f32ed5ad.eot"
+  }
+}

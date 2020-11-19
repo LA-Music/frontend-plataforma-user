@@ -72,7 +72,7 @@ class DashboardUser extends React.Component {
             {routes.map((prop, key) => {
               return (
                 <this.PrivateRoute
-                  path={prop.layout + prop.path}
+                  path={prop.path}
                   component={prop.component}
                   key={key}
                 />
