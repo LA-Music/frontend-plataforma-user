@@ -11,7 +11,7 @@ import GestaoRepo from "views/user/Gestao_Repositorio"
 var routes = [
   {
     path: "/gestao-repositorio",
-    name: "Gestão do Repositório",
+    name: "Repertório",
     icon: "nc-icon nc-chart-bar-32",
     component: GestaoRepo,
     layout: "/user"

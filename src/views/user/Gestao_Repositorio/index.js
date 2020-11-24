@@ -4,31 +4,6 @@ import ReactApexChart from 'react-apexcharts'
 import DynamicTable from 'components/Table';
 import  { Cards } from './styles'
 const Index = () => {
-  const [grafObras] = useState({
-    series: [44, 55, 13, 43],
-    options: {
-      chart: {
-        width: 380,
-        type: 'pie',
-      },
-      legend: {
-        position: 'bottom'
-      },
-      dataLabels: {
-        enabled: false
-      },
-      colors: ['#FCC468', '#4ACCCD', '#EF8157', '#E3E3E3' ],
-      labels: ['Não binário', 'Homens', 'Mulheres', 'Não identificado'],
-      responsive: [{
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200
-          }
-        }
-      }]
-    }
-  })
   
   const [grafAudiencia] = useState({
     series: [{
@@ -85,17 +60,9 @@ const Index = () => {
   return(
     <div className="content">
       <Row>
-        <Col sm="4">
+        <Col sm="12">
           <Cards body>
-            <CardTitle><h6>Gênero</h6></CardTitle>
-            <div id="chart">
-              <ReactApexChart options={grafObras.options} series={grafObras.series} type="pie" width={380} />
-            </div>
-          </Cards>
-        </Col>
-        <Col sm="8">
-          <Cards body>
-            <CardTitle><h6>Audiência</h6></CardTitle>
+            <CardTitle><h6>Recebimento ($)</h6></CardTitle>
             <div id="chart">
               <ReactApexChart options={grafAudiencia.options} series={grafAudiencia.series} height={270}/>
             </div>
@@ -103,13 +70,13 @@ const Index = () => {
         </Col>
         <Col sm="6">
           <Cards body>
-            <CardTitle className="pr-5 d-flex justify-content-between align-items-center"><h6>Obras</h6><span>Últimos 90 dias</span></CardTitle>
+            <CardTitle className="pr-5 d-flex justify-content-between align-items-center"><h6>Cadastro Regularizado</h6><span>Últimos 90 dias</span></CardTitle>
             <DynamicTable {...TableObras} />
           </Cards>
         </Col>
         <Col sm="6">
           <Cards body>
-            <CardTitle className="pr-5 d-flex justify-content-between align-items-center"><h6>Composições em registro</h6><span>Últimos 90 dias</span></CardTitle>
+            <CardTitle className="pr-5 d-flex justify-content-between align-items-center"><h6>Músicas em registro</h6><span>Últimos 90 dias</span></CardTitle>
             <DynamicTable {...TableRegistro} />
           </Cards>
         </Col>
