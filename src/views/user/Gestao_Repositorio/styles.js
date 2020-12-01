@@ -40,3 +40,26 @@ export const Cards = styled(Card)`
     }
   }
 `;
+
+export const BtnContratar = styled.button`
+  width: 281px;
+  height: 53px;
+  margin: 1.5rem auto;
+
+  border: none;
+  background: #A9D2F1;
+  border-radius: 46px;
+
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #042E56;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;

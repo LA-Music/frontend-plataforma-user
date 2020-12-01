@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { CardTitle, Row, Col } from 'reactstrap';
 import ReactApexChart from 'react-apexcharts'
 import DynamicTable from 'components/Table';
-import  { Cards } from './styles'
+import imgContratar from 'assets/img/img-contratar.svg'
+import  { Cards, BtnContratar } from './styles'
+
 const Index = () => {
   
   const [grafAudiencia] = useState({
@@ -60,12 +62,18 @@ const Index = () => {
   return(
     <div className="content">
       <Row>
-        <Col sm="12">
+        <Col sm="7">
           <Cards body>
             <CardTitle><h6>Recebimento ($)</h6></CardTitle>
             <div id="chart">
               <ReactApexChart options={grafAudiencia.options} series={grafAudiencia.series} height={270}/>
             </div>
+          </Cards>
+        </Col>
+        <Col sm="5">
+          <Cards body style={{background: '#E7F0F7'}}>
+            <img src={imgContratar} alt="Contratar" />
+            <BtnContratar>Quero Contratar</BtnContratar>
           </Cards>
         </Col>
         <Col sm="6">
