@@ -10,19 +10,28 @@ import GestaoRepo from "views/user/Gestao_Repositorio"
 
 var routes = [
   {
-    path: "/gestao-repositorio",
+    path: '#gestao-repositorio',
+    name: 'Gestão de Repositório',
+    icon: "nc-icon nc-chart-bar-32",
+    layout: "/user",
+  },
+  {
+    path: "/repertorio",
     name: "Repertório",
     icon: "nc-icon nc-chart-bar-32",
     component: GestaoRepo,
-    layout: "/user"
+    layout: "/user",
+    sonOf: "#gestao-repositorio"
   },
   {
     path: "/solicitacao",
     name: "Solicitações",
     icon: "nc-icon nc-chart-bar-32",
     component: Solicitacao,
-    layout: "/user"
-  },
+    layout: "/user",
+    sonOf: "#gestao-repositorio"
+  }
+  
   // {
   //   path: "/credito-retido",
   //   name: "Credito Retido",

@@ -1,47 +1,52 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import { logout } from "../../services/auth"
 import { getEmail } from "../../services/auth"
+import { renderNav } from './action'
 import logo from "../../assets/img/logo.png";
 
-var ps;
 
-class Sidebar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.activeRoute.bind(this);
-    this.sidebar = React.createRef();
-  }
-  // verifies if routeName is the one active (in browser input)
-  activeRoute(routeName) {
-    return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
-  }
-  componentDidMount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(this.sidebar.current, {
-        suppressScrollX: true,
-        suppressScrollY: false
-      });
-    }
-  }
-  componentWillUnmount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps.destroy();
-    }
-  }
+const Sidebar = (props) => {
+  // var ps;
+ 
 
-  handleClick(){
+  let initalToggle = {nav: '', subNav: ''}
+  const [ toggle, setToggle ] = useState(initalToggle)
+  const sidebar = useRef()
+
+  useEffect(() => {
+    let paths = props.routes.filter(routes => routes.path === props.location.pathname)
+
+    paths.length > 0 && setToggle({nav: paths[0].sonOf || '', subNav: paths[0].path}) 
+
+       if (navigator.platform.indexOf("Win") > -1) {
+         new PerfectScrollbar(sidebar.current, {
+            suppressScrollX: true,
+            suppressScrollY: false
+          });
+        }
+    
+  },[]) //eslint-disable-line
+
+
+ function handleClick(){
     logout()
   }
-  render() {
+
+  function handleToggle(path) {
+    console.log(path)
+    setToggle({...toggle, nav: toggle.nav === path ? '' : path})
+  }
+  
+    
     return (
       <div
         className="sidebar"
-        data-color={this.props.bgColor}
-        data-active-color={this.props.activeColor}
+        data-color={props.bgColor}
+        data-active-color={props.activeColor}
       >
         <div className="logo">
           <a
@@ -59,26 +64,27 @@ class Sidebar extends React.Component {
             {getEmail()}
           </a>
         </div>
-        <div className="sidebar-wrapper" ref={this.sidebar} style={{overflowX:"hidden"}}>
+        <div className="sidebar-wrapper" ref={sidebar} style={{overflowX:"hidden"}}>
           <Nav>
-            {this.props.routes.map((prop, key) => {
-              return (
-                <li
-                  className={ this.activeRoute(prop.path) + (prop.pro ? " active-pro" : "")}
-                  key={key} >
-                  <NavLink
-                    to={prop.path}
-                    className="nav-link"
-                    activeClassName="active">
-                    <i className={prop.icon} />
-                    <p>{prop.name}</p>
-                  </NavLink>
-                </li>
-              );
-            })}
+            {props.routes.map((prop, key) => 
+              renderNav(prop, key, props, handleToggle, toggle)
+              // return (
+              //   <li
+              //     className={ this.activeRoute(prop.path) + (prop.pro ? " active-pro" : "")}
+              //     key={key} >
+              //     <NavLink
+              //       to={prop.path}
+              //       className="nav-link"
+              //       activeClassName="active">
+              //       <i className={prop.icon} />
+              //       <p>{prop.name}</p>
+              //     </NavLink>
+              //   </li>
+              // );
+            )}
             <li>
               <NavLink
-                onClick={this.handleClick.bind(this)}
+                onClick={handleClick.bind(this)}
                 to="/"
               >
                 <i className="nc-icon nc-simple-remove" />
@@ -88,8 +94,7 @@ class Sidebar extends React.Component {
           </Nav>
         </div>
       </div>
-    );
-  }
+    )
 }
 
 export default Sidebar;
